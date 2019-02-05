@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lancchonete.entindades;
+package modelo;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.time.LocalDate;
+//import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
@@ -13,29 +14,23 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Produto {
 
-    private static final AtomicInteger count = new AtomicInteger(0);
+    //private static final AtomicInteger count = new AtomicInteger(0);
+    
     private int codigo;
     private String nome;
     private String descricao;
     private double preco;
-
-    public Produto() {
-        this.codigo = count.incrementAndGet();
+    private LocalDate validade;
+     
+    public Produto(int codigo){
+        this.codigo = codigo;
     }
-
-    public Produto(String nome, String descricao, double preco) {
+    public Produto(int codigo, String nome, String descricao, double preco, LocalDate validade) {
+        this.codigo = codigo;
         this.nome = nome;
-        this.codigo = count.incrementAndGet();
         this.descricao = descricao;
         this.preco = preco;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.validade = validade;
     }
 
     public int getCodigo() {
@@ -44,6 +39,14 @@ public class Produto {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -62,9 +65,46 @@ public class Produto {
         this.preco = preco;
     }
 
-    @Override
-    public String toString() {
-        return "Produto{" + "codigo=" + codigo + ", descricao=" + descricao + ", preco=" + preco + '}';
+    public LocalDate getValidade() {
+        return validade;
     }
 
+    public void setValidade(LocalDate validade) {
+        this.validade = validade;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", validade=" + validade + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Produto other = (Produto) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
+    }
+
+    
+
+   
+    
 }
