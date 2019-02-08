@@ -3,33 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lancchonete.entindades;
+package modelo;
 
-import java.io.Serializable;
+
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
  * @author Juvenal Carlos Cardo
  */
-public class  Funcionario implements Serializable{
-    private int id;
-    private String nome;
+public class  Funcionario {
+    
     private String cpf;
+    private String nome;
     private String email;
     private String senha;
     private LocalDate dataNascimento;
     private Setor setor;
-
-    public Funcionario(int id, String nome, String cpf, String email, LocalDate dataNascimento, String senha,String setor) {
-        this.id = id;
-        this.nome = nome;
+    public Funcionario(String codigo){
         this.cpf = cpf;
+    }
+     
+
+    public Funcionario(String cpf, String nome, String email, String senha, LocalDate dataNascimento ) {
+        this.cpf = cpf;
+        this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.dataNascimento = dataNascimento;
         this.setor = Setor.valueOf(setor);
+        
     }
+    
+     
 
     public String getSenha() {
         return senha;
@@ -39,16 +46,7 @@ public class  Funcionario implements Serializable{
         this.senha = senha;
     }
 
-    
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+   
     public String getNome() {
         return nome;
     }
@@ -88,14 +86,38 @@ public class  Funcionario implements Serializable{
     public Setor getSetor() {
         return setor;
     }
-    
 
     @Override
     public String toString() {
-        return "Funcionario{" + "id=" + id + ", nome=" + nome + 
-                ", cpf=" + cpf + ", email=" + email + ", dataNascimento=" + dataNascimento + '}';
+        return "Funcionario{" + "cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", dataNascimento=" + dataNascimento + ", setor=" + setor + '}';
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.cpf);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Funcionario other = (Funcionario) obj;
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        return true;
+    }
+
+   
     
     
 }
