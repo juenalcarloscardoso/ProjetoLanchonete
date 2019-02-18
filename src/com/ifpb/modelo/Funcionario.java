@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package com.ifpb.modelo;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,46 +14,33 @@ import java.util.Objects;
  *
  * @author Juvenal Carlos Cardo
  */
-public class  Funcionario {
+public class  Funcionario implements Serializable {
     
     private String cpf;
     private String nome;
     private String email;
-    private String senha;
+    private String fone;
     private LocalDate dataNascimento;
-    private Setor setor;
-    public Funcionario(String codigo){
+    private String setor;
+    private String usuario;
+    private String senha;
+    
+    
+
+//private Setor setor;
+    public Funcionario(String cpf){
         this.cpf = cpf;
     }
-     
 
-    public Funcionario(String cpf, String nome, String email, String senha, LocalDate dataNascimento ) {
+    public Funcionario(String cpf, String nome, String email, String fone, LocalDate dataNascimento, String setor, String usuario, String senha) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
+        this.fone = fone;
         this.dataNascimento = dataNascimento;
-        this.setor = Setor.valueOf(setor);
-        
-    }
-    
-     
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
+        this.setor = setor;
+        this.usuario = usuario;
         this.senha = senha;
-    }
-
-   
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCpf() {
@@ -63,12 +51,28 @@ public class  Funcionario {
         this.cpf = cpf;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFone() {
+        return fone;
+    }
+
+    public void setFone(String fone) {
+        this.fone = fone;
     }
 
     public LocalDate getDataNascimento() {
@@ -79,23 +83,34 @@ public class  Funcionario {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setSetor(String setor) {
-          this.setor = Setor.valueOf(setor);
-    }
-
-    public Setor getSetor() {
+    public String getSetor() {
         return setor;
     }
 
-    @Override
-    public String toString() {
-        return "Funcionario{" + "cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", dataNascimento=" + dataNascimento + ", setor=" + setor + '}';
+    public void setSetor(String setor) {
+        this.setor = setor;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.cpf);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -117,7 +132,20 @@ public class  Funcionario {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Funcionario{" + "cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", fone=" + fone + ", dataNascimento=" + dataNascimento + ", setor=" + setor + ", usuario=" + usuario + ", senha=" + senha + '}';
+    }
+
+    
+    
+    
+
    
+    
+
+    
+    
     
     
 }

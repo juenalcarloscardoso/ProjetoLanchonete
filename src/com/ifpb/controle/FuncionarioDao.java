@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controle;
+package com.ifpb.controle;
 
-import modelo.Funcionario;
+import com.ifpb.modelo.Funcionario;
+import java.util.Set;
 
 /**
  *
@@ -14,4 +15,10 @@ import modelo.Funcionario;
 public interface FuncionarioDao {
     boolean salvarFunc(Funcionario funcionario);
     boolean edititarFunc(Funcionario funcionario);
+    boolean autentificar(String usuario, String senha);
+    
+    Set<Funcionario> getFuncionario();
+    
+   
+    
 }
