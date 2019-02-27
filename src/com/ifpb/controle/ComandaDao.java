@@ -5,19 +5,18 @@
  */
 package com.ifpb.controle;
 
-import com.ifpb.modelo.Funcionario;
+import com.ifpb.modelo.Comanda;
 import java.util.Set;
 
 /**
  *
  * @author Juvenal Carlos Cardo
  */
-public interface FuncionarioDao {
-    boolean salvarFunc(Funcionario funcionario);
-    boolean edititarFunc(Funcionario funcionario);
-    boolean autentificar(String usuario, String senha);
-    Set<Funcionario> getFuncionario();
+public interface ComandaDao {
     
-   
-    
+    boolean temComanda(int mesa);
+    boolean salvarComanda(Comanda comanda);
+    boolean atualizarComanda(Comanda novacomanda, int mesaVelha);
+    boolean deletaComanda(int mesa);
+    Set<Comanda> getComanda();
 }

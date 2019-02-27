@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ifpb.modelo;
+package com.ifpb.enumerations;
 
 /**
  *
- * @Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardo
  */
-public enum StatusPedido {
-    NAOATENDIDO("NAOATENDIDO"), ATENDIDO("ATENDIDO");
+public enum Setor {
+    COZINHA("COZINHA"), CAIXA("CAIXA"), GERENCIA("GERENCIA");
     private final String valor;
 
-    private StatusPedido(String valor) {
+    private Setor(String valor) {
         this.valor = valor;
     }
 
     public String getValor() {
         return valor;
     }
-
+    
 }

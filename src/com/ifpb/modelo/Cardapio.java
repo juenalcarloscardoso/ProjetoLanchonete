@@ -15,17 +15,17 @@ import java.util.Objects;
  * @author Juvenal Carlos Cardo
  */
 public class Cardapio implements Serializable {
-    private List<Produtos> produtos;
+    private List<Produto> produtos;
     
     public Cardapio(){
         produtos = new ArrayList<>();
     }
 
-    public List<Produtos> getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produtos> produtos) {
+    public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
 

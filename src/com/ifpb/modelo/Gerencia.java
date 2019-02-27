@@ -5,7 +5,6 @@
  */
 package com.ifpb.modelo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,25 +13,26 @@ import java.util.Objects;
  *
  * @author Juvenal Carlos Cardo
  */
-public class Cozinha implements Serializable {
-    private List<Pedido> pedidos;
+public class Gerencia {
     
-    public void setPedido(Pedido pedido) {
-       pedidos = new ArrayList<>();
+    private List<Comanda> comandas;
+    
+    public Gerencia(){
+        comandas = new ArrayList<>();
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
+    public List<Comanda> getComandas() {
+        return comandas;
     }
 
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public void setComandas(List<Comanda> comandas) {
+        this.comandas = comandas;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.pedidos);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.comandas);
         return hash;
     }
 
@@ -47,17 +47,17 @@ public class Cozinha implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cozinha other = (Cozinha) obj;
-        if (!Objects.equals(this.pedidos, other.pedidos)) {
+        final Gerencia other = (Gerencia) obj;
+        if (!Objects.equals(this.comandas, other.comandas)) {
             return false;
         }
         return true;
     }
-    
-    
 
-    
-    
+    @Override
+    public String toString() {
+        return "Gerencia{" + "comandas=" + comandas + '}';
+    }
     
     
 }

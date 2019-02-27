@@ -6,6 +6,7 @@
 package com.ifpb.modelo;
 
 
+import com.ifpb.enumerations.Setor;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class  Funcionario implements Serializable {
     private String email;
     private String fone;
     private LocalDate dataNascimento;
-    private String setor;
+    private Setor setor;
     private String usuario;
     private String senha;
     
@@ -32,7 +33,7 @@ public class  Funcionario implements Serializable {
         this.cpf = cpf;
     }
 
-    public Funcionario(String cpf, String nome, String email, String fone, LocalDate dataNascimento, String setor, String usuario, String senha) {
+    public Funcionario(String cpf, String nome, String email, String fone, LocalDate dataNascimento, Setor setor, String usuario, String senha) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -83,11 +84,11 @@ public class  Funcionario implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSetor() {
+    public Setor getSetor() {
         return setor;
     }
 
-    public void setSetor(String setor) {
+    public void setSetor(Setor setor) {
         this.setor = setor;
     }
 

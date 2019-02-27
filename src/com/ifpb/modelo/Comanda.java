@@ -7,6 +7,7 @@ package com.ifpb.modelo;
 
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,7 +21,8 @@ public class Comanda implements Serializable {
     private Set<Pedido> pedidos;
     private int numMesa;
     
-    public Comanda() {
+    public Comanda(int numMesa) {
+        this.numMesa = numMesa;
     }
 
     public Comanda(Set<Pedido> pedidos, int numMesa) {
@@ -47,8 +49,7 @@ public class Comanda implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.pedidos);
-        hash = 41 * hash + this.numMesa;
+        hash = 97 * hash + this.numMesa;
         return hash;
     }
 
@@ -67,9 +68,6 @@ public class Comanda implements Serializable {
         if (this.numMesa != other.numMesa) {
             return false;
         }
-        if (!Objects.equals(this.pedidos, other.pedidos)) {
-            return false;
-        }
         return true;
     }
 
@@ -78,6 +76,8 @@ public class Comanda implements Serializable {
         return "Comanda{" + "pedidos=" + pedidos + ", numMesa=" + numMesa + '}';
     }
 
+    
+    
     
     
 

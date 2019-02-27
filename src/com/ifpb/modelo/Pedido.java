@@ -5,21 +5,21 @@
  */
 package com.ifpb.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import modelo.StatusPedido;
 
 /**
  *
  * @author Juvenal Carlos Cardo
  */
-public class Pedido {
+public class Pedido implements Serializable {
 
     private Produto produto;
     private int quantidade;
     private LocalDateTime dataHora;
     private double subRotal;
-    private StatusPedido status;
+    
 
     public Pedido() {
         this.quantidade = 1;
@@ -30,7 +30,7 @@ public class Pedido {
         this.produto = produto;
         this.quantidade = quantidade;
         this.dataHora = dataHora;
-        this.status = status.NAOATENDIDO;
+        
         calculatSubTotal();
 
     }

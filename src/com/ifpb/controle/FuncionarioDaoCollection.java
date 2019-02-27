@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import com.ifpb.modelo.Funcionario;
 import com.ifpb.modelo.Produto;
+import java.util.Collections;
 
 /**
  *
@@ -18,6 +19,8 @@ import com.ifpb.modelo.Produto;
 public class FuncionarioDaoCollection implements  FuncionarioDao {
     
     private Set<Funcionario> funcionarios;
+    
+    
     
     public FuncionarioDaoCollection(){
         funcionarios = new HashSet<>();
@@ -50,6 +53,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
    
    public Set<Funcionario> getFuncionario(){
        
+       return funcionarios;
        
    }
     
