@@ -26,6 +26,10 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
         funcionarios = new HashSet<>();
     }
 
+    public FuncionarioDaoCollection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
     

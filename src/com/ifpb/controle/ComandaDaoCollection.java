@@ -21,6 +21,7 @@ public class ComandaDaoCollection implements ComandaDao {
         comandas = new HashSet<>();
     }
     
+    @Override
     public boolean temComanda(int mesa){
         Comanda auxliar = new Comanda( mesa);
         if(comandas.contains(mesa)){
@@ -31,6 +32,7 @@ public class ComandaDaoCollection implements ComandaDao {
         
     }
     
+    @Override
      public boolean salvarComanda(Comanda comanda){
          return comandas.add(comanda);
      }
@@ -59,7 +61,8 @@ public class ComandaDaoCollection implements ComandaDao {
      }
      return false;
  }
- public   Set<Comanda> getComanda(){
+    @Override
+  public   Set<Comanda> getComanda(){
      return comandas;
  }
     
