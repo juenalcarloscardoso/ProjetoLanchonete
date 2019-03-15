@@ -50,6 +50,8 @@ public class PedidoDaoCollection implements PedidoDao {
     }
     @Override
     public Set<Pedido> getPedidoMesa(int mesa){
+        Set<Pedido> pedidos = getPedidos();
+        Set<Pedido> pedidosMesa = new HashSet<>();
        for (Pedido pedido : pedidos){
             if(pedido.getNumMesa() == mesa){
                 pedidosMesa.add(pedido);

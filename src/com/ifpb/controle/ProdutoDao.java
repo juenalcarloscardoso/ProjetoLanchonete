@@ -6,6 +6,7 @@
 package com.ifpb.controle;
 
 import com.ifpb.modelo.Produto;
+import java.util.Set;
 
 /**
  *
@@ -14,7 +15,8 @@ import com.ifpb.modelo.Produto;
 public interface ProdutoDao {
     
     boolean salvar(Produto produto);
-    Produto buscarPorcodigo(int codigo);
-    boolean deletar(Produto produto);
+    boolean buscarPorcodigo(int codigo);
+    boolean deletar(int codigo);
     boolean atualizar(Produto produto);
+    Set<Produto> getProdutos();
 }

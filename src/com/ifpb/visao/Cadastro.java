@@ -69,6 +69,11 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabel1.setText("CPF:");
 
+        try {
+            campoCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         campoCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCPFActionPerformed(evt);
@@ -87,7 +92,19 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabel4.setText("Telefone:");
 
+        try {
+            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)###########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel5.setText("Nascimento:");
+
+        try {
+            campoNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel6.setText("Setor:");
 
@@ -107,6 +124,11 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel9.setText("Senha:");
 
         ButtonVolatar.setText("Voltar");
+        ButtonVolatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonVolatarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,7 +254,6 @@ public class Cadastro extends javax.swing.JFrame {
         String email = campoEmail.getText();
         String fone = campoTelefone.getText();
         String datenascimento = campoNascimento.getText();
-        
         String usuario = campoUsuario.getText();
         String senha =   campoSenha.getText();
         
@@ -242,9 +263,10 @@ public class Cadastro extends javax.swing.JFrame {
         
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate nascimento = LocalDate.parse(datenascimento, formatter);
-            Funcionario f = new Funcionario(nome, cpf, email, fone, nascimento,Setor.COZINHA, usuario, senha);
-            if((cpf.length()!=14 )||(nome.length()==0) || (email.length()==0) || (fone.length()!=14) || (usuario.length()==0) || (senha.length()==0)){
-                JOptionPane.showMessageDialog(rootPane, "Preenchar os campos corretemante!",null,JOptionPane.WARNING_MESSAGE,null);
+            Funcionario f = new Funcionario(cpf,nome,email,fone,nascimento,Setor.CAIXA,usuario,senha);
+            
+            if((cpf.length()!=14 )||(nome.length()==0) || (email.length()==0) || (fone.length()!=15) || (usuario.length()==0) || (senha.length()==0)){
+               JOptionPane.showMessageDialog(rootPane, "Preenchar os campos corretemante!",null,JOptionPane.WARNING_MESSAGE,null);
                 
             }else if(dao.salvarFunc(f)){
                 JOptionPane.showMessageDialog(rootPane, "Usuario cadastrado!",null,JOptionPane.INFORMATION_MESSAGE,null);
@@ -255,19 +277,26 @@ public class Cadastro extends javax.swing.JFrame {
                 
             }
           
-        }
         
         
+       
     }//GEN-LAST:event_ButtonSalvarActionPerformed
-
+   
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeActionPerformed
+
+    private void ButtonVolatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVolatarActionPerformed
+        // TODO add your handling code here:
+         this.dispose();
+        new TelaPrincipal().setVisible(true);
+    }//GEN-LAST:event_ButtonVolatarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -290,6 +319,8 @@ public class Cadastro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -322,5 +353,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+
 
 }

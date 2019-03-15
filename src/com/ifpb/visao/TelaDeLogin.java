@@ -5,6 +5,7 @@
  */
 package com.ifpb.visao;
 
+import com.ifpb.controle.FuncionarioDao;
 import com.ifpb.controle.FuncionarioDaoCollection;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardoso
  */
 public class TelaDeLogin extends javax.swing.JFrame {
 
@@ -38,11 +39,11 @@ public class TelaDeLogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        CampoUsuario = new javax.swing.JTextField();
+        campoUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        CampoSenha = new javax.swing.JPasswordField();
+        campoSenha = new javax.swing.JPasswordField();
         buttonAutentica = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        ButtonCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,16 +51,25 @@ public class TelaDeLogin extends javax.swing.JFrame {
         setBackground(new java.awt.Color(128, 0, 255));
         setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Usuário:");
 
-        CampoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        campoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoUsuarioActionPerformed(evt);
+                campoUsuarioActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Senha:");
 
+        campoSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSenhaActionPerformed(evt);
+            }
+        });
+
+        buttonAutentica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         buttonAutentica.setText("Autenticar");
         buttonAutentica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,10 +77,11 @@ public class TelaDeLogin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Criar nova conta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonCadastrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonCadastrar.setText("Criar nova conta");
+        ButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ButtonCadastrarActionPerformed(evt);
             }
         });
 
@@ -84,37 +95,37 @@ public class TelaDeLogin extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CampoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CampoUsuario))))
+                                .addGap(18, 18, 18)
+                                .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(27, 27, 27)
+                                .addComponent(campoSenha))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                        .addGap(160, 160, 160)
                         .addComponent(buttonAutentica))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jButton1)))
+                        .addGap(134, 134, 134)
+                        .addComponent(ButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(campoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonAutentica)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(58, 58, 58))
+                .addGap(18, 18, 18)
+                .addComponent(ButtonCadastrar)
+                .addGap(47, 47, 47))
         );
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/padlock_77917.png"))); // NOI18N
@@ -142,19 +153,20 @@ public class TelaDeLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CampoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoUsuarioActionPerformed
+    private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
        
-    }//GEN-LAST:event_CampoUsuarioActionPerformed
+    }//GEN-LAST:event_campoUsuarioActionPerformed
 
     private void buttonAutenticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAutenticaActionPerformed
         /* 
         String usuario = txtLogin.getText();
         String senha = new String(txtSenha.getPassword());
-        */        
-        //try{
-            String usuario = CampoUsuario.getText();
-            String senha = new String(CampoSenha.getPassword());
-            if(!dao.autentificar(usuario, senha)){
+        */
+        
+            String usuario = campoUsuario.getText();
+            String senha = new String(campoSenha.getPassword());
+           // String senha = campoUsuario.getText();
+            if(dao.autentificar(usuario, senha)){
                 JOptionPane.showMessageDialog(rootPane, "Usuario ou senha incorreta","Erro",JOptionPane.ERROR_MESSAGE,null);
                 
             }else{
@@ -163,18 +175,24 @@ public class TelaDeLogin extends javax.swing.JFrame {
                 principal.setVisible(true);
                 
             }
-       // }catch(IOException | ClassNotFoundException ex){
-           //Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null,ex);
+        //}catch(IOException ex){
+              //Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null,ex);
+        //}catch (ClassNotFoundException ex) {
+           // Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null, ex);
         //}
         
         
         
     }//GEN-LAST:event_buttonAutenticaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
          new Cadastro().setVisible(true);
          this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ButtonCadastrarActionPerformed
+
+    private void campoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,10 +231,10 @@ public class TelaDeLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField CampoSenha;
-    private javax.swing.JTextField CampoUsuario;
+    private javax.swing.JButton ButtonCadastrar;
     private javax.swing.JToggleButton buttonAutentica;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPasswordField campoSenha;
+    private javax.swing.JTextField campoUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -26,20 +26,27 @@ public class ProdutoDaoCollection implements ProdutoDao{
     }
    
     @Override
-   public Produto  buscarPorcodigo(int codigo){
+   public boolean  buscarPorcodigo(int codigo){
        Produto auxiliar = new Produto(codigo);
        if(produtos.contains(auxiliar)){
            for(Produto produto: produtos){
                if(produto.getCodigo()== codigo);
-               return produto;
+               return true;
            }
        }
-       return null;
+       return false;
    }
    
     @Override
-   public boolean deletar(Produto produto){
-       return produtos.remove(produto);
+   public boolean deletar(int codigo){
+       for(Produto p: produtos){
+           if(p.getCodigo()== codigo){
+               produtos.remove(p);
+               return true;
+           }
+           
+       }
+       return false;
    }
    
     @Override
@@ -50,6 +57,10 @@ public class ProdutoDaoCollection implements ProdutoDao{
        }else{
            return false;
        }
+   }
+   
+   public Set<Produto> getProdutos(){
+       return produtos;
    }
    
 }

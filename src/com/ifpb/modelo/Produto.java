@@ -20,17 +20,17 @@ public class Produto {
     private String nome;
     private String descricao;
     private double preco;
-    private LocalDate validade;
+    
      
     public Produto(int codigo){
         this.codigo = codigo;
     }
-    public Produto(int codigo, String nome, String descricao, double preco, LocalDate validade) {
+    public Produto(int codigo, String nome, String descricao, double preco) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.validade = validade;
+        
     }
 
     public int getCodigo() {
@@ -65,18 +65,14 @@ public class Produto {
         this.preco = preco;
     }
 
-    public LocalDate getValidade() {
-        return validade;
-    }
-
-    public void setValidade(LocalDate validade) {
-        this.validade = validade;
-    }
-
     @Override
     public String toString() {
-        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + ", validade=" + validade + '}';
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + '}';
     }
+
+    
+  
+    
 
     @Override
     public int hashCode() {

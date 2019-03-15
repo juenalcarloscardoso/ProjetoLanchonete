@@ -26,9 +26,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
         funcionarios = new HashSet<>();
     }
 
-    public FuncionarioDaoCollection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     
     
@@ -48,7 +46,13 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
      }
     
     public boolean autentificar(String usuario, String senha){
-       return funcionarios.stream().anyMatch((f) -> (f.getUsuario().equals(usuario) && f.getSenha().equals(senha)));
+       //return funcionarios.stream().anyMatch((f) -> (f.getUsuario().equals(usuario) && f.getSenha().equals(senha)));
+       for(Funcionario f:funcionarios){
+          if( (f.getUsuario()== usuario) && (f.getSenha()== senha)){
+              return true;
+          }
+       }
+       return false;
     }
     
    public boolean deletar(Funcionario funcionario){

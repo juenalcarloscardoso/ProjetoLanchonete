@@ -21,14 +21,20 @@ public class Comanda implements Serializable {
     private Set<Pedido> pedidos;
     private int numMesa;
     
+    
+    
     public Comanda(int numMesa) {
         this.numMesa = numMesa;
+        
     }
-
+    
     public Comanda(Set<Pedido> pedidos, int numMesa) {
         this.pedidos = pedidos;
         this.numMesa = numMesa;
     }
+
+   
+    
 
     public Set<Pedido> getPedidos() {
         return pedidos;

@@ -44,8 +44,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ButtonCozinha.setText("Cozinha");
 
         BottonCardapio.setText("Cardápio");
+        BottonCardapio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottonCardapioActionPerformed(evt);
+            }
+        });
 
         BottonMesa.setText("Mesa");
+        BottonMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottonMesaActionPerformed(evt);
+            }
+        });
 
         ButtonGerencia.setText("Gerência");
 
@@ -114,6 +124,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BottonCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonCardapioActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new GerenciarMenu().setVisible(true);
+    }//GEN-LAST:event_BottonCardapioActionPerformed
+
+    private void BottonMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonMesaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new GerenciarMesa().setVisible(true);
+    }//GEN-LAST:event_BottonMesaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardoso
  */
 public class  Funcionario implements Serializable {
     
@@ -26,9 +26,6 @@ public class  Funcionario implements Serializable {
     private String usuario;
     private String senha;
     
-    
-
-//private Setor setor;
     public Funcionario(String cpf){
         this.cpf = cpf;
     }

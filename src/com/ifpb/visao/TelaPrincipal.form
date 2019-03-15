@@ -111,11 +111,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Card&#xe1;pio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BottonCardapioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BottonMesa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mesa"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BottonMesaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonGerencia">
           <Properties>
