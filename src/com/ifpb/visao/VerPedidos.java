@@ -28,7 +28,7 @@ public class VerPedidos extends javax.swing.JFrame {
     DefaultListModel modelo;
      Set<Pedido> pedidos;
     
-    public VerPedidos(int mesa) {
+    public VerPedidos(int mesa) throws IOException {
         initComponents();
         this.mesa = mesa;
         modelo = new DefaultListModel();
@@ -65,7 +65,6 @@ public class VerPedidos extends javax.swing.JFrame {
         botaoOk = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaDePedidos = new javax.swing.JList<>();
-        botaoAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,14 +94,6 @@ public class VerPedidos extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(listaDePedidos);
 
-        botaoAtualizar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        botaoAtualizar.setText("Atualizar");
-        botaoAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoAtualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,17 +109,15 @@ public class VerPedidos extends javax.swing.JFrame {
                         .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(197, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(180, 180, 180))
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,11 +131,9 @@ public class VerPedidos extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -156,7 +143,11 @@ public class VerPedidos extends javax.swing.JFrame {
     private void botaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOkActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new GerenciarMesa().setVisible(true);
+        try {
+            new GerenciarMesa().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(VerPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botaoOkActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
@@ -169,13 +160,10 @@ public class VerPedidos extends javax.swing.JFrame {
             new EditarPedido(pedido).setVisible(true);
         } catch(ArrayIndexOutOfBoundsException ex){
             JOptionPane.showMessageDialog(rootPane, "Selecione um pedido", null, JOptionPane.WARNING_MESSAGE, null);
+        } catch (IOException ex) {
+            Logger.getLogger(VerPedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botaoEditarActionPerformed
-
-    private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +202,6 @@ public class VerPedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoOk;
     private javax.swing.JTextField campoTotal;

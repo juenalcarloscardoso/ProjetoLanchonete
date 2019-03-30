@@ -8,6 +8,7 @@ package com.ifpb.visao;
 import com.ifpb.controle.ProdutoDao;
 import com.ifpb.controle.ProdutoDaoCollection;
 import com.ifpb.modelo.Produto;
+import java.io.IOException;
 
 /**
  *
@@ -15,7 +16,7 @@ import com.ifpb.modelo.Produto;
  */
 public class App {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         ProdutoDao dao = new ProdutoDaoCollection();
         Produto p1 = new Produto(1,"Batata frita","Porção de batata frita com molho",3.50);

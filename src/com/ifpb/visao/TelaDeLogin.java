@@ -22,7 +22,7 @@ public class TelaDeLogin extends javax.swing.JFrame {
      * Creates new form TelaDeLogin
      */
     FuncionarioDaoCollection dao;
-    public TelaDeLogin() {
+    public TelaDeLogin() throws IOException {
         initComponents();
         dao = new FuncionarioDaoCollection();
         
@@ -165,8 +165,8 @@ public class TelaDeLogin extends javax.swing.JFrame {
         
             String usuario = campoUsuario.getText();
             String senha = new String(campoSenha.getPassword());
-           // String senha = campoUsuario.getText();
-            if(dao.autentificar(usuario, senha)){
+            //String senha = campoSenha.getText();
+            if(!dao.autentificar(usuario, senha)){
                 JOptionPane.showMessageDialog(rootPane, "Usuario ou senha incorreta","Erro",JOptionPane.ERROR_MESSAGE,null);
                 
             }else{
@@ -175,18 +175,18 @@ public class TelaDeLogin extends javax.swing.JFrame {
                 principal.setVisible(true);
                 
             }
-        //}catch(IOException ex){
-              //Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null,ex);
-        //}catch (ClassNotFoundException ex) {
-           // Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+        
         
         
         
     }//GEN-LAST:event_buttonAutenticaActionPerformed
 
     private void ButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCadastrarActionPerformed
-         new Cadastro().setVisible(true);
+        try {
+            new Cadastro().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
          this.dispose();
     }//GEN-LAST:event_ButtonCadastrarActionPerformed
 
@@ -225,7 +225,11 @@ public class TelaDeLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TelaDeLogin().setVisible(true);
+                try {
+                    new TelaDeLogin().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

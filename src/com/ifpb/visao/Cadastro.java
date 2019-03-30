@@ -9,15 +9,18 @@ import com.ifpb.controle.FuncionarioDao;
 import com.ifpb.controle.FuncionarioDaoCollection;
 import com.ifpb.enumerations.Setor;
 import com.ifpb.modelo.Funcionario;
+import com.toedter.calendar.JDateChooser;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardoso
  */
 public class Cadastro extends javax.swing.JFrame {
 
@@ -25,7 +28,7 @@ public class Cadastro extends javax.swing.JFrame {
      * Creates new form Cadastro
      */
     FuncionarioDaoCollection dao;
-    public Cadastro() {
+    public Cadastro() throws IOException {
         initComponents();
         dao = new FuncionarioDaoCollection();
     }
@@ -40,6 +43,7 @@ public class Cadastro extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         campoCPF = new javax.swing.JFormattedTextField();
@@ -50,7 +54,6 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         campoTelefone = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        campoNascimento = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         CampoSetor = new javax.swing.JComboBox<>();
         ButtonSalvar = new javax.swing.JButton();
@@ -59,6 +62,9 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         campoSenha = new javax.swing.JTextField();
         ButtonVolatar = new javax.swing.JButton();
+        campoNascimento = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        campoDate = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
@@ -97,14 +103,13 @@ public class Cadastro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        campoTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTelefoneActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Nascimento:");
-
-        try {
-            campoNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         jLabel6.setText("Setor:");
 
@@ -130,6 +135,14 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("Nascimento:");
+
+        try {
+            campoDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,30 +152,36 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoDate, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ButtonSalvar))
-                                .addGap(0, 73, Short.MAX_VALUE))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8))
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(ButtonVolatar)
@@ -171,9 +190,13 @@ public class Cadastro extends javax.swing.JFrame {
                                             .addComponent(campoUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(CampoSetor, javax.swing.GroupLayout.Alignment.LEADING, 0, 127, Short.MAX_VALUE))
                                         .addGap(10, 10, 10)
-                                        .addComponent(jLabel9)))
+                                        .addComponent(jLabel9))
+                                    .addComponent(campoNascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoSenha)))))
+                                .addComponent(campoSenha))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(ButtonSalvar)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -195,11 +218,15 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(campoDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(campoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(CampoSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,30 +275,35 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarActionPerformed
         String cpf = campoCPF.getText();
-        System.out.println(cpf);
-        System.out.println(cpf.length());
         String nome = campoNome.getText();
         String email = campoEmail.getText();
         String fone = campoTelefone.getText();
-        String datenascimento = campoNascimento.getText();
+        String datenascimento = campoDate.getText();
+        //JDateChooser datenascimento = campoNascimento;
+        
         String usuario = campoUsuario.getText();
         String senha =   campoSenha.getText();
-        
-        //Falta setor
-        
+        Setor setor = (Setor) CampoSetor.getSelectedItem();
+        System.out.println(usuario);
+        System.out.println(senha);
        
         
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate nascimento = LocalDate.parse(datenascimento, formatter);
+            //
             Funcionario f = new Funcionario(cpf,nome,email,fone,nascimento,Setor.CAIXA,usuario,senha);
-            
+            //
             if((cpf.length()!=14 )||(nome.length()==0) || (email.length()==0) || (fone.length()!=15) || (usuario.length()==0) || (senha.length()==0)){
                JOptionPane.showMessageDialog(rootPane, "Preenchar os campos corretemante!",null,JOptionPane.WARNING_MESSAGE,null);
                 
             }else if(dao.salvarFunc(f)){
                 JOptionPane.showMessageDialog(rootPane, "Usuario cadastrado!",null,JOptionPane.INFORMATION_MESSAGE,null);
                 this.dispose();
+            try {
                 new TelaDeLogin().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Esse usuário já foi cadastrado!", null, JOptionPane.WARNING_MESSAGE, null);
                 
@@ -291,6 +323,10 @@ public class Cadastro extends javax.swing.JFrame {
          this.dispose();
         new TelaPrincipal().setVisible(true);
     }//GEN-LAST:event_ButtonVolatarActionPerformed
+
+    private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,7 +361,11 @@ public class Cadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastro().setVisible(true);
+                try {
+                    new Cadastro().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -335,13 +375,16 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton ButtonVolatar;
     private javax.swing.JComboBox<Object> CampoSetor;
     private javax.swing.JFormattedTextField campoCPF;
+    private javax.swing.JFormattedTextField campoDate;
     private javax.swing.JTextField campoEmail;
-    private javax.swing.JFormattedTextField campoNascimento;
+    private com.toedter.calendar.JDateChooser campoNascimento;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoSenha;
     private javax.swing.JFormattedTextField campoTelefone;
     private javax.swing.JTextField campoUsuario;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

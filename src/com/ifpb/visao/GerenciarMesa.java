@@ -28,7 +28,7 @@ public class GerenciarMesa extends javax.swing.JFrame {
      */
      ComandaDao daoComanda;
      PedidoDao daoPedidos;
-    public GerenciarMesa() {
+    public GerenciarMesa() throws IOException {
         initComponents();
         daoComanda = new ComandaDaoCollection();
         daoPedidos = new PedidoDaoCollection();
@@ -52,6 +52,7 @@ public class GerenciarMesa extends javax.swing.JFrame {
         ButtonVerPedidos = new javax.swing.JButton();
         ButtonFazerPedidos = new javax.swing.JButton();
         ButtonEncerraComanda = new javax.swing.JButton();
+        ButtonVoltarTelaPrincipal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,6 +99,19 @@ public class GerenciarMesa extends javax.swing.JFrame {
 
         ButtonEncerraComanda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonEncerraComanda.setText("Encerrar comanda");
+        ButtonEncerraComanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEncerraComandaActionPerformed(evt);
+            }
+        });
+
+        ButtonVoltarTelaPrincipal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonVoltarTelaPrincipal.setText("Volta Tela principal");
+        ButtonVoltarTelaPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonVoltarTelaPrincipalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,15 +122,18 @@ public class GerenciarMesa extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonEncerraComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(controleMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ButtonNovaComanda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ButtonVerPedidos)
                         .addGap(18, 18, 18)
                         .addComponent(ButtonFazerPedidos))
-                    .addComponent(controleMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ButtonEncerraComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonVoltarTelaPrincipal)))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +148,9 @@ public class GerenciarMesa extends javax.swing.JFrame {
                     .addComponent(ButtonVerPedidos)
                     .addComponent(ButtonFazerPedidos))
                 .addGap(41, 41, 41)
-                .addComponent(ButtonEncerraComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonEncerraComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonVoltarTelaPrincipal))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -168,7 +187,11 @@ public class GerenciarMesa extends javax.swing.JFrame {
         int mesa = (int) controleMesa.getValue(); //Pega o valor do root e atribui
         if(daoComanda.temComanda(mesa)){
             this.dispose();
-            new FazerPedido(mesa).setVisible(true);
+            try {
+                new FazerPedido(mesa).setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(GerenciarMesa.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else JOptionPane.showMessageDialog(rootPane, "Não existe uma comanda aberta para essa mesa!", null, JOptionPane.WARNING_MESSAGE, null);
     }//GEN-LAST:event_ButtonFazerPedidosActionPerformed
 
@@ -177,7 +200,11 @@ public class GerenciarMesa extends javax.swing.JFrame {
          int mesa = (int) controleMesa.getValue();
          if(daoComanda.temComanda(mesa)){
              this.dispose();
-                new VerPedidos(mesa).setVisible(true);
+             try {
+                 new VerPedidos(mesa).setVisible(true);
+             } catch (IOException ex) {
+                 Logger.getLogger(GerenciarMesa.class.getName()).log(Level.SEVERE, null, ex);
+             }
          }else JOptionPane.showMessageDialog(rootPane, "Não existe uma comanda aberta para essa mesa!", null, JOptionPane.WARNING_MESSAGE, null);
     }//GEN-LAST:event_ButtonVerPedidosActionPerformed
 
@@ -194,6 +221,25 @@ public class GerenciarMesa extends javax.swing.JFrame {
             new TelaPrincipal().setVisible(true);
         }else JOptionPane.showMessageDialog(rootPane, "Já existe uma comanda aberta para essa mesa!", null, JOptionPane.WARNING_MESSAGE, null);
     }//GEN-LAST:event_ButtonNovaComandaActionPerformed
+
+    private void ButtonEncerraComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEncerraComandaActionPerformed
+        // TODO add your handling code here:
+        int mesa = (int)controleMesa.getValue();
+        double Total = 0;
+        Set<Pedido> pedidos = daoPedidos.getPedidoMesa(mesa);
+        if(daoComanda.deletaComanda(mesa)){
+            Total = daoPedidos.valorTotal(mesa);
+            JOptionPane.showMessageDialog(rootPane, "Comanda encerrada. Total R$"+Total, null, JOptionPane.PLAIN_MESSAGE, null);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Nenhuma comanda aberta para essa mesa", null, JOptionPane.WARNING_MESSAGE, null);
+        }
+    }//GEN-LAST:event_ButtonEncerraComandaActionPerformed
+
+    private void ButtonVoltarTelaPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarTelaPrincipalActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new TelaPrincipal().setVisible(true);
+    }//GEN-LAST:event_ButtonVoltarTelaPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,7 +271,11 @@ public class GerenciarMesa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerenciarMesa().setVisible(true);
+                try {
+                    new GerenciarMesa().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(GerenciarMesa.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -235,6 +285,7 @@ public class GerenciarMesa extends javax.swing.JFrame {
     private javax.swing.JButton ButtonFazerPedidos;
     private javax.swing.JButton ButtonNovaComanda;
     private javax.swing.JButton ButtonVerPedidos;
+    private javax.swing.JButton ButtonVoltarTelaPrincipal;
     private javax.swing.JSpinner controleMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

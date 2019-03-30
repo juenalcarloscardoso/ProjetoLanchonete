@@ -5,6 +5,7 @@
  */
 package com.ifpb.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 //import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,7 +13,7 @@ import java.time.LocalDate;
  *
  * @author Juvenal Carlos Cardo
  */
-public class Produto {
+public class Produto implements Serializable{
 
     //private static final AtomicInteger count = new AtomicInteger(0);
     
@@ -22,9 +23,10 @@ public class Produto {
     private double preco;
     
      
-    public Produto(int codigo){
+    /*public Produto(int codigo){
         this.codigo = codigo;
     }
+    */
     public Produto(int codigo, String nome, String descricao, double preco) {
         this.codigo = codigo;
         this.nome = nome;
@@ -99,6 +101,7 @@ public class Produto {
         return true;
     }
 
+    
     
 
    

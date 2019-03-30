@@ -5,6 +5,10 @@
  */
 package com.ifpb.visao;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Juvenal Carlos Cardo
@@ -37,11 +41,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BottonMinhaConta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Principal");
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/bfe7cc606ee5c127149cc427825415fd.png"))); // NOI18N
 
         ButtonCozinha.setText("Cozinha");
+        ButtonCozinha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCozinhaActionPerformed(evt);
+            }
+        });
 
         BottonCardapio.setText("Cardápio");
         BottonCardapio.addActionListener(new java.awt.event.ActionListener() {
@@ -58,10 +68,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         ButtonGerencia.setText("Gerência");
+        ButtonGerencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonGerenciaActionPerformed(evt);
+            }
+        });
 
         ButtonSair.setText("Sair");
+        ButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSairActionPerformed(evt);
+            }
+        });
 
         BottonMinhaConta.setText("Minha conta");
+        BottonMinhaConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottonMinhaContaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,14 +153,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void BottonCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonCardapioActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new GerenciarMenu().setVisible(true);
+        try {
+            new GerenciarMenu().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BottonCardapioActionPerformed
 
     private void BottonMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonMesaActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new GerenciarMesa().setVisible(true);
+        try {
+            new GerenciarMesa().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BottonMesaActionPerformed
+
+    private void ButtonCozinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCozinhaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new Pedidos().setVisible(true);
+    }//GEN-LAST:event_ButtonCozinhaActionPerformed
+
+    private void ButtonGerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGerenciaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        try {
+            new Gerencia().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ButtonGerenciaActionPerformed
+
+    private void ButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSairActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        try {
+            new TelaDeLogin().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ButtonSairActionPerformed
+
+    private void BottonMinhaContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonMinhaContaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        try {
+            new Cadastro().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BottonMinhaContaActionPerformed
 
     /**
      * @param args the command line arguments

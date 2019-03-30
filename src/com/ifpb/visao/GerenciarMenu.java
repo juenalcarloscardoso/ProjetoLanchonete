@@ -25,7 +25,7 @@ public class GerenciarMenu extends javax.swing.JFrame {
      * Creates new form GerenciarMenu
      */
     ProdutoDao dao;
-    public GerenciarMenu() {
+    public GerenciarMenu() throws IOException {
         initComponents();
         dao = new ProdutoDaoCollection();
     }
@@ -237,7 +237,7 @@ public class GerenciarMenu extends javax.swing.JFrame {
          Produto p = new Produto(codigo, nome, descricao, preco);
         if((codigo == 0) | (nome == null) | (descricao == null) | (preco <= 0)){
             JOptionPane.showMessageDialog(rootPane, "Preencha os campos corretamente!", null, JOptionPane.WARNING_MESSAGE, null);
-        }else if( dao.atualizar(p)){
+        }else if( dao.atualizar(p, codigo)){
             JOptionPane.showMessageDialog(rootPane, "Produto Atualizado!", null, JOptionPane.INFORMATION_MESSAGE, null);
                     this.dispose();
                     new TelaPrincipal().setVisible(true);
@@ -266,12 +266,12 @@ public class GerenciarMenu extends javax.swing.JFrame {
           double preco = Double.parseDouble(campoPreco.getText());
           Produto p = new Produto(codigo, nome, descricao, preco);
            if((codigo == 0) | (nome == null) | (descricao == null) | (preco <= 0)){
-               
+               JOptionPane.showMessageDialog(rootPane,"Prencha os Campos corretamneto!");
            }else{
                dao.salvar(p);
                JOptionPane.showMessageDialog(rootPane, "Produto Cadastrado!", null, JOptionPane.INFORMATION_MESSAGE, null);
-                    //this.dispose();
-                    //new TelaPrincipal().setVisible(true);
+                    this.dispose();
+                    new TelaPrincipal().setVisible(true);
            }
          
     }//GEN-LAST:event_ButtonSalvarActionPerformed
@@ -284,18 +284,18 @@ public class GerenciarMenu extends javax.swing.JFrame {
             int  codigo = Integer.parseInt(campoCodigo.getText());
             
             if(dao.buscarPorcodigo(codigo)){
-                 Set<Produto> produtos = dao.getProdutos();
-                 for(Produto p: produtos){
-                     if(p.getCodigo()==codigo){
-                         produto = p;
-                     }
-                 }
-                 if(produto!=null){
+                Set<Produto> produtos = dao.getProdutos();
+                for(Produto p: produtos){
+                    if(p.getCodigo()==codigo){
+                        produto = p;
+                        
+                    }
+                }
+                if(produto!=null){
                     campoNome.setText(produto.getNome());
                     campoDescricao.setText(produto.getDescricao());
                     campoPreco.setText(""+produto.getPreco());
                 }else JOptionPane.showMessageDialog(rootPane, "Produto não cadastrado!", null, JOptionPane.WARNING_MESSAGE, null);
-            
             }else JOptionPane.showMessageDialog(rootPane, "Produto não cadastrado!", null, JOptionPane.WARNING_MESSAGE, null);
             
         }catch(NumberFormatException ex){
@@ -333,7 +333,11 @@ public class GerenciarMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GerenciarMenu().setVisible(true);
+                try {
+                    new GerenciarMenu().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(GerenciarMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

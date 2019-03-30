@@ -28,7 +28,7 @@ public class EditarPedido extends javax.swing.JFrame {
     DefaultListModel modelo;
     PedidoDao dao;
     
-    public EditarPedido(Pedido pedido) {
+    public EditarPedido(Pedido pedido) throws IOException {
         initComponents();
         this.pedido = pedido;
         dao = new PedidoDaoCollection();
@@ -150,7 +150,11 @@ public class EditarPedido extends javax.swing.JFrame {
     private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new GerenciarMesa().setVisible(true);
+        try {
+            new GerenciarMesa().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(EditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ButtonModificarActionPerformed
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed

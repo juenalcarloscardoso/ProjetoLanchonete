@@ -17,6 +17,6 @@ public interface ProdutoDao {
     boolean salvar(Produto produto);
     boolean buscarPorcodigo(int codigo);
     boolean deletar(int codigo);
-    boolean atualizar(Produto produto);
-    Set<Produto> getProdutos();
+    boolean atualizar(Produto produto,int codigo);
+    public Set<Produto> getProdutos();
 }

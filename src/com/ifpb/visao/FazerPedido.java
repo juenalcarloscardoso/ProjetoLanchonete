@@ -38,7 +38,7 @@ public class FazerPedido extends javax.swing.JFrame {
     PedidoDao daoPedido;
     Set<Produto> produtos;
     
-    public FazerPedido(int mesa) {
+    public FazerPedido(int mesa) throws IOException {
         initComponents();
         this.mesa = mesa;
         modelo = new DefaultListModel();
@@ -167,6 +167,8 @@ public class FazerPedido extends javax.swing.JFrame {
                 new GerenciarMesa().setVisible(true);
         } catch(ArrayIndexOutOfBoundsException ex){
             JOptionPane.showMessageDialog(null, "Selecione um produto", null, JOptionPane.WARNING_MESSAGE, null);
+        } catch (IOException ex) {
+            Logger.getLogger(FazerPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ButtonAdicionarActionPerformed
 
