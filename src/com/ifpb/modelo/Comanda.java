@@ -13,8 +13,8 @@ import java.util.Set;
 
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe que possui os dados da mesa.
+ * @author Juvenal Carlos Cardoso
  */
 public class Comanda implements Serializable {
 
@@ -27,7 +27,11 @@ public class Comanda implements Serializable {
         this.numMesa = numMesa;
         
     }
-    
+    /**
+     * Construtor de pedidos e números de mesa.
+     * @param pedidos
+     * @param numMesa 
+     */
     public Comanda(Set<Pedido> pedidos, int numMesa) {
         this.pedidos = pedidos;
         this.numMesa = numMesa;
@@ -35,7 +39,10 @@ public class Comanda implements Serializable {
 
    
     
-
+   /**
+    * Abaixo estão todos Sets e Gets da classe
+    * @return 
+    */
     public Set<Pedido> getPedidos() {
         return pedidos;
     }

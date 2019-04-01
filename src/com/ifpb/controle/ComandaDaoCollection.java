@@ -26,6 +26,9 @@ public class ComandaDaoCollection implements ComandaDao {
     private Set<Comanda> comandas;
     private File arquivo;
     
+    /**
+     * Construtor do arquivo e da comanda
+     */
     public ComandaDaoCollection () throws IOException{
         comandas = new HashSet<>();
         arquivo = new File("Comandas");
@@ -33,7 +36,11 @@ public class ComandaDaoCollection implements ComandaDao {
             arquivo.createNewFile();
         }
     }
-    
+    /**
+     * Método para verificar se foi solicitado um mesa.
+     * @param mesa
+     * @return true ou false;
+     */
     @Override
     public boolean temComanda(int mesa){
        Set<Comanda> comandas = null;
@@ -63,6 +70,11 @@ public class ComandaDaoCollection implements ComandaDao {
         
     }
     
+     /**
+     * Método para salvar comanda.
+     * @param comanda
+     * @return true ou false;
+     */
     @Override
      public boolean salvarComanda(Comanda comanda){
          Set<Comanda> comandas = null;
@@ -85,9 +97,14 @@ public class ComandaDaoCollection implements ComandaDao {
         } else return false;
      }
      
-    
+    /**
+     * Método para atualizar comanda.
+     * @param novacomanda
+     * @param mesaVelha
+     * @return true ou false;
+     */
     @Override
- public boolean atualizarComanda(Comanda novacomanda, int mesaAntiga){
+     public boolean atualizarComanda(Comanda novacomanda, int mesaAntiga){
        
          for(Comanda c: comandas){
              if(c.getNumMesa() == mesaAntiga){
@@ -103,9 +120,14 @@ public class ComandaDaoCollection implements ComandaDao {
          }
          return false;
      }
- 
+    
+    /**
+     * Método para deletar mesa.
+     * @param mesa
+     * @return true ou false;
+     */
     @Override
- public boolean deletaComanda(int mesa){
+   public boolean deletaComanda(int mesa){
       Set<Comanda> comandas = null;
         try {
             comandas = getComandas();
@@ -131,7 +153,10 @@ public class ComandaDaoCollection implements ComandaDao {
   public   Set<Comanda> getComanda(){
      return comandas;
  }
-  
+  /**
+     * Método para lista comandas
+     * @return new HashSet<>();
+     */
   public Set<Comanda> getComandas() throws FileNotFoundException, IOException, ClassNotFoundException{
         if(arquivo.length()>0){
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(arquivo));
@@ -140,7 +165,11 @@ public class ComandaDaoCollection implements ComandaDao {
             return new HashSet<>();
         }
         }
-
+    /**
+     * Método para atualizar o arquivo onde estão armazenado as comandas.
+     * @param comandas
+     
+     */
     private void atualizarArquivo(Set<Comanda> comandas) throws FileNotFoundException, IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));
         out.writeObject(comandas);

@@ -10,17 +10,22 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe de gerênciar as comandas.
+ * @author Juvenal Carlos Cardoso
  */
 public class Gerencia {
     
     private List<Comanda> comandas;
-    
+    /**
+     * Construtor de comandas.
+     */
     public Gerencia(){
         comandas = new ArrayList<>();
     }
-
+    /**
+     * Abaixo estão todos os Sets e Gets da classe gerência.
+     * @return 
+     */
     public List<Comanda> getComandas() {
         return comandas;
     }

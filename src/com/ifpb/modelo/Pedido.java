@@ -12,8 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe que descrever os dados do produto
+ * @author Juvenal Carlos Cardosp
  */
 public class Pedido implements Serializable {
 
@@ -29,6 +29,14 @@ public class Pedido implements Serializable {
     public Pedido() {
        
     }
+    /**
+     * Construtor da classe pedidos
+     * @param produto
+     * @param quantidade
+     * @param data
+     * @param hora
+     * @param numMesa 
+     */
 
     public Pedido(Produto produto, int quantidade, LocalDate data, LocalDate hora, int numMesa) {
         this.produto = produto;
@@ -38,7 +46,10 @@ public class Pedido implements Serializable {
         this.numMesa = numMesa;
         this.status = false;
     }
-
+    /**
+     * Abaixo estão todos os Sets e Gets da classe pedido
+     * @return 
+     */
     public Produto getProduto() {
         return produto;
     }

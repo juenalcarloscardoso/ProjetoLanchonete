@@ -23,15 +23,22 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardoso
  */
 public class FuncionarioDaoCollection implements  FuncionarioDao {
+    /**
+     * Declaraçãp do arquivo
+     */
     private File arquivo;
-    
+    /**
+     * Declaração de um conjunto de funcionarios.
+     */
     private Set<Funcionario> funcionarios;
     
     
-    
+    /**
+     * Construtor do arquivo e de funcionario.
+     */
     public FuncionarioDaoCollection() throws IOException{
         funcionarios = new HashSet<>();
         arquivo = new File("funcionarios");
@@ -66,6 +73,13 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
     //======================================================================================//
     
     //======================================================================================//
+   
+    /**
+     * Método para editatr funcionario.
+     * @param funcionario
+     * @return true ou false;
+     */
+    @Override
     public boolean edititarFunc(Funcionario funcionario){
         /*Funcionario auxiliar = new Funcionario(funcionario.getCpf());
         if(funcionarios.contains(auxiliar)){
@@ -96,12 +110,16 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
      }
     
     //==================================================================================================
-    
+    /**
+     * Método utilizado para verificar se usúario ou senha estão corretos. 
+     * @param usuario
+     * @param senha
+     * @return true ou false;
+     */
     @Override
     public boolean autentificar(String usuario, String senha){
-       //return funcionarios.stream().anyMatch((f) -> (f.getUsuario().equals(usuario) && f.getSenha().equals(senha)));
        
-        Set<Funcionario> funcionarios = getFuncionario();
+       Set<Funcionario> funcionarios = getFuncionario();
         for(Funcionario f:funcionarios){
           if( (f.getUsuario().equals(usuario)) && (f.getSenha().equals(senha) )){
               return true;
@@ -111,11 +129,19 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
       
     }
     
-    //falta 
+    /**
+     * Método para deletar funcionario.
+     * @param funcionario
+     * @return true ou false;
+     */
    public boolean deletar(Funcionario funcionario){
         return funcionarios.remove(funcionarios);
    }
-   //Metodo para lista funcionario
+  
+   /**
+    *  Método para lista funcionario
+    * @return HashSet<>();
+    */
    public Set<Funcionario> getFuncionario(){
        
         if(arquivo.length()>0){
@@ -135,7 +161,11 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
         }
             return new HashSet<>();
         }
-
+    /**
+     * Método para atualizar o arquivo onde estão armazenado os funcionarios.
+     * @param funcionarios
+     
+     */
     private void atualizarArquivo(Set<Funcionario> funcionarios) throws FileNotFoundException, IOException {
         try(ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(arquivo))){
             out.writeObject(funcionarios);

@@ -7,7 +7,7 @@ package com.ifpb.visao;
 
 
 
-import com.ifpb.controle.PedidoDao;
+
 import com.ifpb.controle.PedidoDaoCollection;
 import com.ifpb.modelo.Pedido;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class Gerencia extends javax.swing.JFrame {
      * Creates new form Gerencia
      */
     DefaultListModel modelo;
-    PedidoDao dao;
+    PedidoDaoCollection dao;
     
     public Gerencia() throws IOException {
         initComponents();
@@ -52,15 +52,15 @@ public class Gerencia extends javax.swing.JFrame {
         campoDataInicio = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         campoDataFim = new javax.swing.JFormattedTextField();
-        ButtonOk = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        campoTotal = new javax.swing.JTextField();
-        ButaoVoltar = new javax.swing.JButton();
+        botaoOk = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaDePedidos = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        campoTotal = new javax.swing.JTextField();
+        botaoVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gerência");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Gerência");
@@ -83,29 +83,29 @@ public class Gerencia extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        ButtonOk.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        ButtonOk.setText("Ok");
-        ButtonOk.addActionListener(new java.awt.event.ActionListener() {
+        botaoOk.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        botaoOk.setText("Ok");
+        botaoOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonOkActionPerformed(evt);
+                botaoOkActionPerformed(evt);
             }
         });
+
+        listaDePedidos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(listaDePedidos);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Total:");
 
         campoTotal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        ButaoVoltar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        ButaoVoltar.setText("Voltar");
-        ButaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+        botaoVoltar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        botaoVoltar.setText("Voltar");
+        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButaoVoltarActionPerformed(evt);
+                botaoVoltarActionPerformed(evt);
             }
         });
-
-        listaDePedidos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(listaDePedidos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,10 +124,14 @@ public class Gerencia extends javax.swing.JFrame {
                         .addComponent(campoDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 112, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(417, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -135,14 +139,10 @@ public class Gerencia extends javax.swing.JFrame {
                 .addGap(250, 250, 250))
             .addGroup(layout.createSequentialGroup()
                 .addGap(181, 181, 181)
-                .addComponent(ButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ButaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,16 +161,16 @@ public class Gerencia extends javax.swing.JFrame {
                                     .addComponent(campoDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -178,7 +178,7 @@ public class Gerencia extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOkActionPerformed
+    private void botaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOkActionPerformed
         // TODO add your handling code here:
         double total = 0;
         try {
@@ -191,7 +191,7 @@ public class Gerencia extends javax.swing.JFrame {
                 throw new Exception();
             } else{
                 for(Pedido pedido : pedidos){
-                    if((pedido.isStatus() == true)&& (pedido.getData().isAfter(dataInicio.plusDays(-1)) && pedido.getData().isBefore(dataFim.plusDays(1)))){
+                    if((pedido.getData().isAfter(dataInicio.plusDays(-1)) && pedido.getData().isBefore(dataFim.plusDays(1)))){
                         total += pedido.getSubtotal();
                         modelo.addElement(pedido);
                     }
@@ -206,13 +206,13 @@ public class Gerencia extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Informe um intervalo de data válido!", null, JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_ButtonOkActionPerformed
+    }//GEN-LAST:event_botaoOkActionPerformed
 
-    private void ButaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoVoltarActionPerformed
+    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new TelaPrincipal().setVisible(true);
-    }//GEN-LAST:event_ButaoVoltarActionPerformed
+    }//GEN-LAST:event_botaoVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,8 +255,8 @@ public class Gerencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButaoVoltar;
-    private javax.swing.JButton ButtonOk;
+    private javax.swing.JButton botaoOk;
+    private javax.swing.JButton botaoVoltar;
     private javax.swing.JFormattedTextField campoDataFim;
     private javax.swing.JFormattedTextField campoDataInicio;
     private javax.swing.JTextField campoTotal;

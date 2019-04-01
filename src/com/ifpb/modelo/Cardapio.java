@@ -11,12 +11,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe que possui produtos disponivel para o consumo do cliente
+ * @author Juvenal Carlos Cardoso
  */
 public class Cardapio implements Serializable {
     private List<Produto> produtos;
-    
+    /**
+     * Construtur de produtos.
+     */
     public Cardapio(){
         produtos = new ArrayList<>();
     }

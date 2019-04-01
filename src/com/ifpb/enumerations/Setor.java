@@ -6,19 +6,13 @@
 package com.ifpb.enumerations;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classa de enumeração para criar estrutura organizacional que agrupa valores que possui o mesmo sentido.
+ * @author Juvenal Carlos Cardoso
  */
+
+
 public enum Setor {
-    COZINHA("COZINHA"), CAIXA("CAIXA"), GERENCIA("GERENCIA");
-    private final String valor;
-
-    private Setor(String valor) {
-        this.valor = valor;
-    }
-
-    public String getValor() {
-        return valor;
-    }
+    
+    COZINHA,GERÊNCIA,CAIXA,ATENDIMENTO;
     
 }

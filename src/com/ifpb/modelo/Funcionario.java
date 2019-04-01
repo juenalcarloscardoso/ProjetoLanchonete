@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- *
+ * Classe que contém os atributos do funcionarios.
  * @author Juvenal Carlos Cardoso
  */
 public class  Funcionario implements Serializable {
@@ -29,7 +29,17 @@ public class  Funcionario implements Serializable {
     public Funcionario(String cpf){
         this.cpf = cpf;
     }
-
+   /**
+    * Construtor de funcionarios.
+    * @param cpf
+    * @param nome
+    * @param email
+    * @param fone
+    * @param dataNascimento
+    * @param setor
+    * @param usuario
+    * @param senha 
+    */
     public Funcionario(String cpf, String nome, String email, String fone, LocalDate dataNascimento, Setor setor, String usuario, String senha) {
         this.cpf = cpf;
         this.nome = nome;
@@ -40,7 +50,10 @@ public class  Funcionario implements Serializable {
         this.usuario = usuario;
         this.senha = senha;
     }
-
+   /**
+    * Abaixo estão todos os Sets e Gets da classe funcionario.
+    * @return 
+    */
     public String getCpf() {
         return cpf;
     }

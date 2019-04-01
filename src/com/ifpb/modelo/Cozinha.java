@@ -11,12 +11,22 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe que possui os pedidos que estão na cozinha.
+ * @author Juvenal Carlos Cardoso
  */
 public class Cozinha implements Serializable {
     private List<Pedido> pedidos;
-    
+    /**
+     * Construtor da classe cozinha
+     * @param pedidos 
+     */
+     public Cozinha(List<Pedido> pedidos) {
+        this.pedidos = new ArrayList<>();
+    }
+    /**
+     * Abaixo estão todos os Sets e Gets da classe cozinha.
+     * @param pedido 
+     */
     public void setPedido(Pedido pedido) {
        pedidos = new ArrayList<>();
     }

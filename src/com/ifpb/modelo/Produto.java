@@ -10,8 +10,8 @@ import java.time.LocalDate;
 //import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe que possui os dados do produtos
+ * @author Juvenal Carlos Cardoso
  */
 public class Produto implements Serializable{
 
@@ -27,6 +27,13 @@ public class Produto implements Serializable{
         this.codigo = codigo;
     }
     */
+    /**
+     * Construtor de produtos.
+     * @param codigo
+     * @param nome
+     * @param descricao
+     * @param preco 
+     */
     public Produto(int codigo, String nome, String descricao, double preco) {
         this.codigo = codigo;
         this.nome = nome;
@@ -34,7 +41,10 @@ public class Produto implements Serializable{
         this.preco = preco;
         
     }
-
+   /**
+    * Abaixo estão todos os Sets e Gets da classe produtos.
+    * @return 
+    */
     public int getCodigo() {
         return codigo;
     }

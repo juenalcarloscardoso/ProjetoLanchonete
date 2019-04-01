@@ -20,12 +20,14 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardoso
  */
 public class ProdutoDaoCollection implements ProdutoDao{
     private Set<Produto> produtos;
     private File arquivo;
-    
+    /**
+     * Contrutor do arquivo e de produtos. 
+     */
      public ProdutoDaoCollection() throws IOException{
         arquivo = new File("Produtos");
         produtos = new HashSet<>();
@@ -33,7 +35,10 @@ public class ProdutoDaoCollection implements ProdutoDao{
             arquivo.createNewFile();
         }
     }
-    
+    /**
+     * Método utilizado para listar todos os produtos cadastrados.
+     * @return lista de produtos
+     */
     @Override
      public Set<Produto> getProdutos(){
          if(arquivo.length()>0){
@@ -52,7 +57,11 @@ public class ProdutoDaoCollection implements ProdutoDao{
             return new HashSet<>();
         
      }
-     
+     /**
+     * Método para salvar produto.
+     * @param produto
+     * @return true ou false;
+     */
     @Override
      public boolean salvar(Produto produto){
          Set<Produto> produtos = getProdutos();
@@ -68,13 +77,21 @@ public class ProdutoDaoCollection implements ProdutoDao{
          }
      }
 
-    
+    /**
+     * Método para atualizar arquivo onde estar armazenado todos os produtos
+     * @param produtos
+     
+     */
      private void atualizarArquivo(Set<Produto> produtos) throws FileNotFoundException, IOException {
         try(ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(arquivo))){
             out.writeObject(produtos);
         }
     }
-     
+     /**
+     * Método para deletar produto pelo codigo.
+     * @param codigo
+     * @return true ou false;
+     */
     @Override
      public boolean deletar(int codigo){
          Set<Produto> produtos = getProdutos();
@@ -93,7 +110,12 @@ public class ProdutoDaoCollection implements ProdutoDao{
           return false;
              
  }
-     
+     /**
+     * Método para fazer busca de produto pelo codigo.
+     * @param codigo
+     * @return true po false;
+     */
+    @Override
      public boolean buscarPorcodigo(int codigo){
          Set<Produto> produtos = getProdutos();
          for(Produto p: produtos){
@@ -106,7 +128,12 @@ public class ProdutoDaoCollection implements ProdutoDao{
          return false;
        
      }
-     
+     /**
+     * Método para atualizar produto pelo codigo
+     * @param produto
+     * @param codigo
+     * @return true ou false;
+     */
     @Override
       public boolean atualizar(Produto produto, int codigo){
           Set<Produto> produtos = getProdutos();

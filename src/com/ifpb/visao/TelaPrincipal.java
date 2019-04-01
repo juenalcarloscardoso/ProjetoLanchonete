@@ -173,7 +173,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void ButtonCozinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCozinhaActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new Pedidos().setVisible(true);
+        try {
+            new Pedidos().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ButtonCozinhaActionPerformed
 
     private void ButtonGerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGerenciaActionPerformed
@@ -200,7 +204,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         try {
-            new Cadastro().setVisible(true);
+            new EditarUsuario().setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

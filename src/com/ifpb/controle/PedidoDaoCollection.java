@@ -27,7 +27,9 @@ public class PedidoDaoCollection implements PedidoDao {
     private Set<Pedido> pedidos;
     private Set<Pedido> pedidosMesa;
     private File arquivo;
-    
+    /**
+     * Construtor do arquivo e de pedido.
+     */
     public PedidoDaoCollection() throws IOException{
         arquivo = new File("Pedidos");
         pedidos = new HashSet<>();
@@ -36,7 +38,10 @@ public class PedidoDaoCollection implements PedidoDao {
             arquivo.createNewFile();
         }
     }
-    
+    /**
+     * Método para lista pedidos.
+     * @return 
+     */
     @Override
        public Set<Pedido> getPedidos(){
            if(arquivo.length()>0){
@@ -59,7 +64,11 @@ public class PedidoDaoCollection implements PedidoDao {
            return new HashSet<>();
        }
     
-    
+    /**
+     * Método para salvar pedido.
+     * @param pedido
+     * @return true ou false;
+     */
     @Override
     public boolean salvarPedido (Pedido pedido){
         Set<Pedido> pedidos = getPedidos();
@@ -74,7 +83,12 @@ public class PedidoDaoCollection implements PedidoDao {
         }
         return false;
     }
-   
+    /**
+     * Método para atualizar pedido
+     * @param velho
+     * @param novo
+     * @return true ou false;
+     */
     @Override
     public boolean atualizarPedido(Pedido velho, Pedido novo){
         Set<Pedido> pedidos = getPedidos();
@@ -90,6 +104,11 @@ public class PedidoDaoCollection implements PedidoDao {
             return false;
         }
     }
+    /**
+     * Método para remover pedido
+     * @param pedido
+     * @return true po false;
+     */
     @Override
     public boolean removerPedido(Pedido pedido){
          Set<Pedido> pedidos = getPedidos();
@@ -104,7 +123,11 @@ public class PedidoDaoCollection implements PedidoDao {
              return false;
          }
     }
-   
+   /**
+    * Método para verificar se o número de mesa é igual ao número de mesa do peddido e adicionar o pedido a mesa solicitante.
+    * @param mesa
+    * @return pedidosMesa;
+    */
     @Override
     public Set<Pedido> getPedidoMesa(int mesa){
         Set<Pedido> pedidos = getPedidos();
@@ -118,7 +141,11 @@ public class PedidoDaoCollection implements PedidoDao {
       
         
     }
-   
+   /**
+     * Método para somar o valor total que foi consumidor na mesa.
+     * @param mesa
+     * @return total;
+     */
     @Override
     public double valorTotal(int mesa){
         Set<Pedido> pedidos = getPedidos();
@@ -134,13 +161,19 @@ public class PedidoDaoCollection implements PedidoDao {
       
        
    }
-    
+    /**
+     * Método para atualizar o subtotal consumido pelo criente.
+     * @param pedidos 
+     */
     private void atualizarSubtotal(Set<Pedido> pedidos){
         for(Pedido pedido : pedidos){
             pedido.setSubtotal(pedido.getQuantidade() *pedido.getProduto().getPreco());
         }
     }
-
+   /**
+    * Método para atualizar o arquivo onde esta armazenado todos os pedidos dos clientes.
+    * @param pedidos
+    */
     private void atualizarArquivo(Set<Pedido> pedidos) throws FileNotFoundException, IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));
         out.writeObject(pedidos);
