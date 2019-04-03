@@ -22,10 +22,7 @@ public class Gerencia {
     public Gerencia(){
         comandas = new ArrayList<>();
     }
-    /**
-     * Abaixo estão todos os Sets e Gets da classe gerência.
-     * @return 
-     */
+  
     public List<Comanda> getComandas() {
         return comandas;
     }

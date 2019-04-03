@@ -31,14 +31,14 @@ public class  Funcionario implements Serializable {
     }
    /**
     * Construtor de funcionarios.
-    * @param cpf
-    * @param nome
-    * @param email
-    * @param fone
-    * @param dataNascimento
-    * @param setor
-    * @param usuario
-    * @param senha 
+    * @param cpf representa o cpf do funcionario
+    * @param nome representa o nome do funcionario
+    * @param email representa o email do funcionario
+    * @param fone representa o telefone do funcionario
+    * @param dataNascimento representa a dada de nascimento do funcionario
+    * @param setor representa o setor  do funcionario
+    * @param usuario representa o login do funcionario
+    * @param senha representa a senha do funcionario
     */
     public Funcionario(String cpf, String nome, String email, String fone, LocalDate dataNascimento, Setor setor, String usuario, String senha) {
         this.cpf = cpf;
@@ -50,10 +50,7 @@ public class  Funcionario implements Serializable {
         this.usuario = usuario;
         this.senha = senha;
     }
-   /**
-    * Abaixo estão todos os Sets e Gets da classe funcionario.
-    * @return 
-    */
+   
     public String getCpf() {
         return cpf;
     }

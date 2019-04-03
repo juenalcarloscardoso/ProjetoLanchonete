@@ -53,18 +53,16 @@ public class Cadastro extends javax.swing.JFrame {
         campoEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         campoTelefone = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        CampoSetor = new javax.swing.JComboBox<>();
         ButtonSalvar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         campoSenha = new javax.swing.JTextField();
         ButtonVolatar = new javax.swing.JButton();
-        campoNascimento = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
         campoDate = new javax.swing.JFormattedTextField();
+        CampoSetor = new javax.swing.JComboBox<>(Setor.values());
         jLabel7 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
@@ -99,7 +97,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel4.setText("Telefone:");
 
         try {
-            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)###########")));
+            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -109,11 +107,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Nascimento:");
-
         jLabel6.setText("Setor:");
-
-        CampoSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atendimento", "Cozinha", "Caixa", "Gerência" }));
 
         ButtonSalvar.setText("Salvar");
         ButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +136,12 @@ public class Cadastro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        CampoSetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoSetorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,30 +173,27 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8))
-                                .addGap(29, 29, 29))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ButtonVolatar)
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(campoUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CampoSetor, javax.swing.GroupLayout.Alignment.LEADING, 0, 127, Short.MAX_VALUE))
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel9))
-                                    .addComponent(campoNascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoSenha))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(ButtonVolatar)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel9)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoSenha))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(ButtonSalvar)
+                                        .addGap(0, 247, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ButtonSalvar)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CampoSetor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,15 +219,11 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(campoDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(campoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(CampoSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +286,7 @@ public class Cadastro extends javax.swing.JFrame {
             //
             Funcionario f = new Funcionario(cpf,nome,email,fone,nascimento,Setor.CAIXA,usuario,senha);
             //
-            if((cpf.length()!=14 )||(nome.length()==0) || (email.length()==0) || (fone.length()!=15) || (usuario.length()==0) || (senha.length()==0)){
+            if((cpf.length()>14 )||(nome.length()==0) || (email.length()==0) || (fone.length()>15) || (usuario.length()==0) || (senha.length()==0)){
                JOptionPane.showMessageDialog(rootPane, "Preenchar os campos corretemante!",null,JOptionPane.WARNING_MESSAGE,null);
                 
             }else if(dao.salvarFunc(f)){
@@ -327,6 +320,10 @@ public class Cadastro extends javax.swing.JFrame {
     private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTelefoneActionPerformed
+
+    private void CampoSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoSetorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoSetorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,7 +374,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField campoCPF;
     private javax.swing.JFormattedTextField campoDate;
     private javax.swing.JTextField campoEmail;
-    private com.toedter.calendar.JDateChooser campoNascimento;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoSenha;
     private javax.swing.JFormattedTextField campoTelefone;
@@ -388,7 +384,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

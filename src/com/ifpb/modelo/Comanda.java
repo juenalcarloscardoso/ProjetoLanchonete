@@ -29,20 +29,14 @@ public class Comanda implements Serializable {
     }
     /**
      * Construtor de pedidos e números de mesa.
-     * @param pedidos
-     * @param numMesa 
+     * @param pedidos representa um conjunto de pedidos
+     * @param numMesa representa o número da mesa da Lanchonete
      */
     public Comanda(Set<Pedido> pedidos, int numMesa) {
         this.pedidos = pedidos;
         this.numMesa = numMesa;
     }
 
-   
-    
-   /**
-    * Abaixo estão todos Sets e Gets da classe
-    * @return 
-    */
     public Set<Pedido> getPedidos() {
         return pedidos;
     }

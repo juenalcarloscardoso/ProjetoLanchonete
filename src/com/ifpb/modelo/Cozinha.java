@@ -18,14 +18,14 @@ public class Cozinha implements Serializable {
     private List<Pedido> pedidos;
     /**
      * Construtor da classe cozinha
-     * @param pedidos 
+     * @param pedidos representa um conjunto de pedidos
      */
      public Cozinha(List<Pedido> pedidos) {
         this.pedidos = new ArrayList<>();
     }
     /**
      * Abaixo estão todos os Sets e Gets da classe cozinha.
-     * @param pedido 
+     * @param pedido represnta um conjunto de pedidos
      */
     public void setPedido(Pedido pedido) {
        pedidos = new ArrayList<>();

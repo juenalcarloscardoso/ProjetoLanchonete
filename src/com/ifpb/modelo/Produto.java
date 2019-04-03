@@ -29,10 +29,10 @@ public class Produto implements Serializable{
     */
     /**
      * Construtor de produtos.
-     * @param codigo
-     * @param nome
-     * @param descricao
-     * @param preco 
+     * @param codigo representa o codigo do produto
+     * @param nome  represnta o nome do produto
+     * @param descricao representa a descrição do produto
+     * @param preco representa o valor total do produto
      */
     public Produto(int codigo, String nome, String descricao, double preco) {
         this.codigo = codigo;
@@ -41,10 +41,7 @@ public class Produto implements Serializable{
         this.preco = preco;
         
     }
-   /**
-    * Abaixo estão todos os Sets e Gets da classe produtos.
-    * @return 
-    */
+  
     public int getCodigo() {
         return codigo;
     }

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Juvenal Carlos Cardo
+ * @author Juvenal Carlos Cardoso
  */
 public class ComandaDaoCollection implements ComandaDao {
     private Set<Comanda> comandas;
@@ -37,8 +37,8 @@ public class ComandaDaoCollection implements ComandaDao {
         }
     }
     /**
-     * Método para verificar se foi solicitado um mesa.
-     * @param mesa
+     * Método para verificar se foi solicitado uma mesa.
+     * @param mesa da Lnchonete
      * @return true ou false;
      */
     @Override
@@ -72,7 +72,7 @@ public class ComandaDaoCollection implements ComandaDao {
     
      /**
      * Método para salvar comanda.
-     * @param comanda
+     * @param comanda representa acomanda aberta
      * @return true ou false;
      */
     @Override
@@ -99,8 +99,8 @@ public class ComandaDaoCollection implements ComandaDao {
      
     /**
      * Método para atualizar comanda.
-     * @param novacomanda
-     * @param mesaVelha
+     * @param novacomanda parametro que permite atualização da comanda
+     * @param mesaVelha  parametro que representa a mesa
      * @return true ou false;
      */
     @Override
@@ -123,7 +123,7 @@ public class ComandaDaoCollection implements ComandaDao {
     
     /**
      * Método para deletar mesa.
-     * @param mesa
+     * @param mesa parametro que indica a mesa que dece ser delerada
      * @return true ou false;
      */
     @Override
@@ -167,7 +167,7 @@ public class ComandaDaoCollection implements ComandaDao {
         }
     /**
      * Método para atualizar o arquivo onde estão armazenado as comandas.
-     * @param comandas
+     * @param comandas representa todas as comandas 
      
      */
     private void atualizarArquivo(Set<Comanda> comandas) throws FileNotFoundException, IOException {

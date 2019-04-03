@@ -31,11 +31,11 @@ public class Pedido implements Serializable {
     }
     /**
      * Construtor da classe pedidos
-     * @param produto
-     * @param quantidade
-     * @param data
-     * @param hora
-     * @param numMesa 
+     * @param produto representa o produto da Lanchonete
+     * @param quantidade representa a quantidade de produtos
+     * @param data representa a data
+     * @param hora representta a hora
+     * @param numMesa  represnta o número de mesa
      */
 
     public Pedido(Produto produto, int quantidade, LocalDate data, LocalDate hora, int numMesa) {
@@ -46,10 +46,7 @@ public class Pedido implements Serializable {
         this.numMesa = numMesa;
         this.status = false;
     }
-    /**
-     * Abaixo estão todos os Sets e Gets da classe pedido
-     * @return 
-     */
+   
     public Produto getProduto() {
         return produto;
     }

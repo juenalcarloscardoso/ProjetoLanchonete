@@ -19,8 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Juvenal Carlos Cardo
+ * Classe onde todos os métodos devem ser implementados
+ * @author Juvenal Carlos Cardoso
  */
 public class PedidoDaoCollection implements PedidoDao {
     
@@ -40,7 +40,7 @@ public class PedidoDaoCollection implements PedidoDao {
     }
     /**
      * Método para lista pedidos.
-     * @return 
+      
      */
     @Override
        public Set<Pedido> getPedidos(){
@@ -66,7 +66,7 @@ public class PedidoDaoCollection implements PedidoDao {
     
     /**
      * Método para salvar pedido.
-     * @param pedido
+     * @param pedido representa o pedido solicitado pelo usuáriuo
      * @return true ou false;
      */
     @Override
@@ -85,8 +85,8 @@ public class PedidoDaoCollection implements PedidoDao {
     }
     /**
      * Método para atualizar pedido
-     * @param velho
-     * @param novo
+     * @param velho representa pedido velho
+     * @param novo representa pedido novo
      * @return true ou false;
      */
     @Override
@@ -106,7 +106,7 @@ public class PedidoDaoCollection implements PedidoDao {
     }
     /**
      * Método para remover pedido
-     * @param pedido
+     * @param pedido representa pedido a ser deletado
      * @return true po false;
      */
     @Override
@@ -124,8 +124,8 @@ public class PedidoDaoCollection implements PedidoDao {
          }
     }
    /**
-    * Método para verificar se o número de mesa é igual ao número de mesa do peddido e adicionar o pedido a mesa solicitante.
-    * @param mesa
+    * Método para verificar se o número de mesa é igual ao número de mesa do pedido e adicionar o pedido a mesa solicitante.
+    * @param mesa represnta o número da mesa
     * @return pedidosMesa;
     */
     @Override
@@ -143,7 +143,7 @@ public class PedidoDaoCollection implements PedidoDao {
     }
    /**
      * Método para somar o valor total que foi consumidor na mesa.
-     * @param mesa
+     * @param mesa representa o número da mesa
      * @return total;
      */
     @Override
@@ -163,7 +163,7 @@ public class PedidoDaoCollection implements PedidoDao {
    }
     /**
      * Método para atualizar o subtotal consumido pelo criente.
-     * @param pedidos 
+     * @param pedidos  representa uma conjunto de pedidos
      */
     private void atualizarSubtotal(Set<Pedido> pedidos){
         for(Pedido pedido : pedidos){
@@ -172,7 +172,7 @@ public class PedidoDaoCollection implements PedidoDao {
     }
    /**
     * Método para atualizar o arquivo onde esta armazenado todos os pedidos dos clientes.
-    * @param pedidos
+    * @param pedidos representa um conjunto de pedidos
     */
     private void atualizarArquivo(Set<Pedido> pedidos) throws FileNotFoundException, IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));

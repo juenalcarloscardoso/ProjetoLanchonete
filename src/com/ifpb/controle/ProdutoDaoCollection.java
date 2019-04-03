@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe onde deve ser implementados todos os métodos de produtos
  * @author Juvenal Carlos Cardoso
  */
 public class ProdutoDaoCollection implements ProdutoDao{
@@ -59,8 +59,8 @@ public class ProdutoDaoCollection implements ProdutoDao{
      }
      /**
      * Método para salvar produto.
-     * @param produto
-     * @return true ou false;
+     * @param produto reprsenta o produto da Lanchonete
+     * @return true ou false; 
      */
     @Override
      public boolean salvar(Produto produto){
@@ -79,7 +79,7 @@ public class ProdutoDaoCollection implements ProdutoDao{
 
     /**
      * Método para atualizar arquivo onde estar armazenado todos os produtos
-     * @param produtos
+     * @param produtos representa um conjunto de produtos da empresa
      
      */
      private void atualizarArquivo(Set<Produto> produtos) throws FileNotFoundException, IOException {
@@ -89,7 +89,7 @@ public class ProdutoDaoCollection implements ProdutoDao{
     }
      /**
      * Método para deletar produto pelo codigo.
-     * @param codigo
+     * @param codigo representa o codigo do produto a ser deletado
      * @return true ou false;
      */
     @Override
@@ -112,7 +112,7 @@ public class ProdutoDaoCollection implements ProdutoDao{
  }
      /**
      * Método para fazer busca de produto pelo codigo.
-     * @param codigo
+     * @param codigo representa o codigo do produto
      * @return true po false;
      */
     @Override
@@ -130,8 +130,8 @@ public class ProdutoDaoCollection implements ProdutoDao{
      }
      /**
      * Método para atualizar produto pelo codigo
-     * @param produto
-     * @param codigo
+     * @param produto representa o produto da Lanchonete
+     * @param codigo representa o codigo do produto
      * @return true ou false;
      */
     @Override

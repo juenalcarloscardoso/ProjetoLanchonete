@@ -94,7 +94,7 @@ public class EditarUsuario extends javax.swing.JFrame {
         jLabel4.setText("Telefone:");
 
         try {
-            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)###########")));
+            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -276,7 +276,7 @@ public class EditarUsuario extends javax.swing.JFrame {
             //
             Funcionario f = new Funcionario(cpf,nome,email,fone,nascimento,setor,usuario,senha);
             //
-            if((cpf.length()!=14 )||(nome.length()==0) || (email.length()==0) || (fone.length()!=15) || (usuario.length()==0) || (senha.length()==0)){
+            if((cpf.length()>14 )||(nome.length()==0) || (email.length()==0) || (fone.length()>15) || (usuario.length()==0) || (senha.length()==0)){
                JOptionPane.showMessageDialog(rootPane, "Preenchar os campos corretemante!",null,JOptionPane.WARNING_MESSAGE,null);
                 
             }else if(dao.edititarFunc(f)){

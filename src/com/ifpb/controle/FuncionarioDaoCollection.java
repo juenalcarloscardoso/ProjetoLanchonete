@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe onde dever implementado todas as funções de funcionario
  * @author Juvenal Carlos Cardoso
  */
 public class FuncionarioDaoCollection implements  FuncionarioDao {
@@ -54,6 +54,12 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
     
     
    //================================================================================// 
+    
+    /**
+     * Método para salvar funcionarios da Lanchonete
+     * @param funcionario representa os funcionarios da empresea
+     * @return 
+     */
     @Override
     
     public boolean salvarFunc(Funcionario funcionario){
@@ -76,7 +82,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
    
     /**
      * Método para editatr funcionario.
-     * @param funcionario
+     * @param funcionario representa os funcionarios da Lanchonete
      * @return true ou false;
      */
     @Override
@@ -111,9 +117,9 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
     
     //==================================================================================================
     /**
-     * Método utilizado para verificar se usúario ou senha estão corretos. 
-     * @param usuario
-     * @param senha
+     * Método utilizado para verificar se usúario ou senha estão corretos
+     * @param usuario representa o usuario a ser autentificavel
+     * @param senha  representa a senha a ser autentificavel
      * @return true ou false;
      */
     @Override
@@ -131,7 +137,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
     
     /**
      * Método para deletar funcionario.
-     * @param funcionario
+     * @param funcionario representa os funcionarios a ser deletado
      * @return true ou false;
      */
    public boolean deletar(Funcionario funcionario){
@@ -163,7 +169,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
         }
     /**
      * Método para atualizar o arquivo onde estão armazenado os funcionarios.
-     * @param funcionarios
+     * @param funcionarios representa os funcionarios salvos no arquivo
      
      */
     private void atualizarArquivo(Set<Funcionario> funcionarios) throws FileNotFoundException, IOException {
