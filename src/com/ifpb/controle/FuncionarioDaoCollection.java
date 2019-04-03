@@ -36,8 +36,10 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
     private Set<Funcionario> funcionarios;
     
     
+   
     /**
      * Construtor do arquivo e de funcionario.
+     * @throws IOException /
      */
     public FuncionarioDaoCollection() throws IOException{
         funcionarios = new HashSet<>();
@@ -58,7 +60,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
     /**
      * Método para salvar funcionarios da Lanchonete
      * @param funcionario representa os funcionarios da empresea
-     * @return 
+     * @return true ou false;
      */
     @Override
     
@@ -146,7 +148,7 @@ public class FuncionarioDaoCollection implements  FuncionarioDao {
   
    /**
     *  Método para lista funcionario
-    * @return HashSet<>();
+    * @return Conjunto de funcionarios;
     */
    public Set<Funcionario> getFuncionario(){
        

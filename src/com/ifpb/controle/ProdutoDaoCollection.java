@@ -25,8 +25,10 @@ import java.util.logging.Logger;
 public class ProdutoDaoCollection implements ProdutoDao{
     private Set<Produto> produtos;
     private File arquivo;
+   
     /**
-     * Contrutor do arquivo e de produtos. 
+     *  Contrutor do arquivo e de produtos. 
+     * @throws IOException /
      */
      public ProdutoDaoCollection() throws IOException{
         arquivo = new File("Produtos");

@@ -26,8 +26,10 @@ public class ComandaDaoCollection implements ComandaDao {
     private Set<Comanda> comandas;
     private File arquivo;
     
+    
     /**
      * Construtor do arquivo e da comanda
+     * @throws IOException /
      */
     public ComandaDaoCollection () throws IOException{
         comandas = new HashSet<>();
@@ -100,8 +102,7 @@ public class ComandaDaoCollection implements ComandaDao {
     /**
      * Método para atualizar comanda.
      * @param novacomanda parametro que permite atualização da comanda
-     * @param mesaVelha  parametro que representa a mesa
-     * @return true ou false;
+     
      */
     @Override
      public boolean atualizarComanda(Comanda novacomanda, int mesaAntiga){
@@ -153,10 +154,18 @@ public class ComandaDaoCollection implements ComandaDao {
   public   Set<Comanda> getComanda(){
      return comandas;
  }
+  
   /**
-     * Método para lista comandas
-     * @return new HashSet<>();
-     */
+   * 
+    
+   */
+  /**
+   * Método para lista comandas
+   *@return conjunto de comandas 
+   * @throws FileNotFoundException p
+   * @throws IOException p
+   * @throws ClassNotFoundException p
+   */
   public Set<Comanda> getComandas() throws FileNotFoundException, IOException, ClassNotFoundException{
         if(arquivo.length()>0){
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(arquivo));

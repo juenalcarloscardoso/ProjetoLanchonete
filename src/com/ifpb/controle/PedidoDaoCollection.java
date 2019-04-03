@@ -27,8 +27,10 @@ public class PedidoDaoCollection implements PedidoDao {
     private Set<Pedido> pedidos;
     private Set<Pedido> pedidosMesa;
     private File arquivo;
+    
     /**
-     * Construtor do arquivo e de pedido.
+     *  Construtor do arquivo e de pedido.
+     * @throws IOException /
      */
     public PedidoDaoCollection() throws IOException{
         arquivo = new File("Pedidos");
